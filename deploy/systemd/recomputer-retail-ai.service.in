@@ -1,0 +1,26 @@
+[Unit]
+Description=Multimodal Retail AI Demo Center on RK3588
+Wants=network-online.target docker.service
+After=network-online.target docker.service
+
+[Service]
+Type=simple
+User=@USER@
+Group=@GROUP@
+WorkingDirectory=@ROOT@/backend
+EnvironmentFile=-@ROOT@/.env
+Environment=RETAIL_AI_ROOT=@ROOT@
+Environment=PYTHONUNBUFFERED=1
+Environment=XDG_RUNTIME_DIR=/run/user/@UID@
+Environment=PULSE_SERVER=unix:/run/user/@UID@/pulse/native
+ExecStart=@ROOT@/backend/start.sh --foreground
+ExecStop=@ROOT@/backend/stop.sh
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=45
+KillMode=mixed
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

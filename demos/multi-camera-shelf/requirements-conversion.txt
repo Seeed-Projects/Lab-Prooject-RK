@@ -1,0 +1,11 @@
+# x86_64 Ubuntu conversion host only
+ultralytics>=8.4,<9
+onnx>=1.16,<2
+onnxruntime>=1.18,<2
+onnxsim>=0.4,<1
+numpy>=1.24,<3
+opencv-python-headless>=4.8,<5
+PyYAML>=6,<7
+# Install the Rockchip-provided rknn-toolkit2 wheel separately after matching
+# it to the board's librknnrt/RKNPU driver version.
+

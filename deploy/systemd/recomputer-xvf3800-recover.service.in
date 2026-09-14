@@ -1,0 +1,19 @@
+[Unit]
+Description=Device-scoped XVF3800 USB recovery
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+ExecStart=/usr/bin/python3 @ROOT@/backend/tools/xvf3800_usb_recover.py --request @ROOT@/backend/run/xvf3800-usb-recover.request --result @ROOT@/backend/run/xvf3800-usb-recover.result.json --marker /run/recomputer-xvf3800-recover/attempt-v2.json
+RuntimeDirectory=recomputer-xvf3800-recover
+RuntimeDirectoryMode=0700
+RuntimeDirectoryPreserve=yes
+SuccessExitStatus=1
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=read-only
+ProtectSystem=strict
+ReadWritePaths=@ROOT@/backend/run /run/recomputer-xvf3800-recover
+LockPersonality=true
+MemoryDenyWriteExecute=true

@@ -1,0 +1,67 @@
+# ASR-only 最小部署变体(实时流水线专用)
+# 只起 speech 服务的 ASR 能力: 无 LLM(ovs-agent)、无 TTS 模型卷、无灯控。
+# 适用场景: 全新 RK3588 部署, 或替代 intranet-led 完整变体。
+#
+# 前置: ./restore.sh 已导入镜像 + rk-asr-models 卷 + 运行时文件
+# 启动: docker compose -f docker-compose.asr-realtime.yml up -d
+services:
+  speech:
+    image: ${VOICE_IMAGE:-openvoicestream:asr-realtime}
+    container_name: openvoicestream
+    network_mode: host
+    restart: unless-stopped
+    privileged: true   # RKNN-lite init_runtime 要求 /proc/device-tree + 完整 /dev 访问(与生产容器同配置)
+    command: ["python3", "-m", "uvicorn", "server.main:app", "--host", "0.0.0.0", "--port", "8621"]
+    environment:
+      # ── ASR(Qwen3 RKLLM, NPU)──
+      ASR_BACKEND: qwen3_asr_rk
+      ASR_DECODER_TYPE: rkllm
+      ASR_DECODER_QUANT: fp16
+      ASR_MODEL_DIR: /opt/asr/models
+      ASR_PLATFORM: rk3588
+      ASR_NPU_CORE_MASK: NPU_CORE_1
+      ASR_ENABLED_CPUS: "4"
+      ASR_MAX_NEW_TOKENS: "256"   # 修正: 生产 intranet-led 容器仍为 64(长句截断), 本变体固定 256
+      ASR_FINAL_STOP_MIN_CHUNKS: "2"
+      ASR_FINAL_STOP_ON_PUNCT: "1"
+      ASR_FINAL_STOP_MIN_CHARS: "8"
+      QWEN3_ASR_STREAM_TRUE: "1"
+      QWEN3_ASR_STREAM_MODE: true_streaming
+      QWEN3_ASR_TRUE_ROLL_SEC: "5"
+      QWEN3_ASR_VAD_FINAL_ASYNC: "1"
+      QWEN3_ASR_TRUE_PARTIAL_WARMUP: "2"
+      QWEN3_ASR_TRUE_PARTIAL_INTERVAL_MS: "1500"
+      QWEN3_ASR_TRUE_PARTIAL_TOKENS: "8"
+      QWEN3_ASR_FRONTEND_EOU_MIN_AUDIO_S: "2.5"
+      QWEN3_ASR_CHUNK_CONFIRM: "0"
+      # ── TTS(本变体不用)──
+      LAZY_TTS: "1"    # 无 TTS 模型卷: 跳过启动预载(否则 Matcha preload 失败直接退出)
+      RK_ENSURE_MATCHA_RESOURCES: "0"   # 启动时不校验/下载 Matcha TTS 资源(无 TTS 卷, 否则会卡下载)
+      # ── VAD ──
+      OVS_VAD_BACKEND: silero
+      OVS_VAD_SILENCE_MS: "400"
+      VAD_ENDPOINT_SILENCE_MS: "400"
+      # ── RK 运行时(离线, 不自动下载)──
+      RK_ARTIFACT_ROOT: /
+      RK_ARTIFACT_MANIFEST: /opt/speech/deploy/artifacts/rk_manifest.json
+      RK_ARTIFACT_AUTO_DOWNLOAD: "0"
+      QWEN3_ARTIFACT_AUTO_DOWNLOAD: "0"
+      RK_RUNTIME_MANIFEST: /opt/rk-runtime/MANIFEST.json
+      RK_RUNTIME_STRICT: "1"
+      RKLLM_LIB_PATH: /opt/asr/lib/librkllmrt.so
+      RKNNRT_LIB_PATH: /usr/lib/librknnrt.so
+      LD_LIBRARY_PATH: /opt/rk-runtime:/opt/asr/lib:/usr/lib
+      PYTHONPATH: /opt/speech
+      OVS_PROFILE: rk3588-multilang
+      OVS_LOG_FORMAT: json
+      # 已剔除: EDGE_LLM_* / OVS_V2V_*(LLM)、TTS_*/MATCHA_*/VOCOS_*/SHERPA_TTS_*(TTS)、
+      # HTTP(S)_PROXY、OVS_ADMIN_KEY —— 本变体不需要, 也不携带任何密钥
+    volumes:
+      - rk-asr-models:/opt/asr/models
+      - /dev:/dev
+      - ${OVS_DEPLOY_DIR:-${HOME}/ovs-asr-deploy}/runtime/MANIFEST.json:/opt/rk-runtime/MANIFEST.json:ro
+      - ${OVS_DEPLOY_DIR:-${HOME}/ovs-asr-deploy}/runtime/rk_manifest.json:/opt/speech/deploy/artifacts/rk_manifest.json:ro
+      - ${OVS_DEPLOY_DIR:-${HOME}/ovs-asr-deploy}/configs:/opt/speech/configs:ro
+volumes:
+  rk-asr-models:
+    external: true   # 由 restore.sh 从 rk-asr-models.tar.gz 恢复

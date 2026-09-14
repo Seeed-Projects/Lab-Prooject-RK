@@ -1,0 +1,36 @@
+{
+  "name": "xvf3800-realtime-asr",
+  "type": "streaming/audio-asr",
+  "entry": ["bash", "run.sh"],
+  "port": 8765,
+  "description": "XVF3800 realtime speaker diarization and ASR",
+  "version": "1.0",
+  "project_root": "../../../services/voice-pipeline",
+  "adapter": {"type": "voice", "upstream_websocket": "ws://127.0.0.1:8765"},
+  "lifecycle": {
+    "single_instance": true,
+    "start_timeout_sec": 180,
+    "stop_signal": "SIGINT",
+    "stop_timeout_sec": 30
+  },
+  "resources": {
+    "npu": {"mode": "exclusive"},
+    "audio": {"alsa_card": "Array", "mode": "exclusive"},
+    "ports": [8621, 8765],
+    "docker": true,
+    "memory_mb": 5000
+  },
+  "outputs": {
+    "channels": ["status", "log", "metrics", "data", "artifact"],
+    "event_types": ["asr.session", "asr.turn", "asr.relabel"],
+    "artifacts": [
+      {"name": "transcript", "path": "artifacts/transcript.txt", "media_type": "text/plain", "base": "run"},
+      {"name": "stats", "path": "artifacts/realtime_stats.json", "media_type": "application/json", "base": "run"}
+    ]
+  },
+  "parameters": {
+    "language": {"type": "string", "enum": ["zh", "en"], "default": "zh"},
+    "recluster_every": {"type": "integer", "minimum": 1, "maximum": 100, "default": 10},
+    "ws_port": {"type": "integer", "minimum": 0, "maximum": 65535, "default": 8765}
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "coordinate_mode": "normalized",
+  "baseline_mode": "auto",
+  "baseline_seconds": 2.0,
+  "regions": [
+    {
+      "id": "band_a",
+      "name": "Top Shelf",
+      "roi": [
+        0.0,
+        0.0,
+        1.0,
+        0.26
+      ],
+      "capacity": 5,
+      "low_stock_threshold": 2
+    },
+    {
+      "id": "band_b",
+      "name": "Upper Mid",
+      "roi": [
+        0.0,
+        0.26,
+        1.0,
+        0.6
+      ],
+      "capacity": 4,
+      "low_stock_threshold": 1
+    },
+    {
+      "id": "band_c",
+      "name": "Lower Mid",
+      "roi": [
+        0.0,
+        0.6,
+        1.0,
+        0.84
+      ],
+      "capacity": 10,
+      "low_stock_threshold": 9
+    },
+    {
+      "id": "band_d",
+      "name": "Bottom Shelf",
+      "roi": [
+        0.0,
+        0.84,
+        1.0,
+        1.0
+      ],
+      "capacity": 5,
+      "low_stock_threshold": 2
+    }
+  ]
+}

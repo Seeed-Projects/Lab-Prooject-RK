@@ -1,0 +1,271 @@
+{
+  "coordinate_mode": "normalized",
+  "baseline_mode": "auto",
+  "baseline_seconds": 2.0,
+  "regions": [
+    {
+      "id": "rice_dream_vanilla",
+      "name": "rice_dream_vanilla",
+      "roi": [
+        0.025,
+        0.0023,
+        0.3014,
+        0.068
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "rice_dream_original",
+      "name": "rice_dream_original",
+      "roi": [
+        0.3028,
+        0.0055,
+        0.575,
+        0.0719
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "rice_dream_vanilla_2",
+      "name": "rice_dream_vanilla",
+      "roi": [
+        0.5819,
+        0.0063,
+        0.9958,
+        0.0836
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "silk_almond",
+      "name": "silk_almond",
+      "roi": [
+        0.0333,
+        0.0961,
+        0.9986,
+        0.2523
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "almond_breeze_chocolate",
+      "name": "almond_breeze_chocolate",
+      "roi": [
+        0.0389,
+        0.2938,
+        0.7222,
+        0.4219
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "almond_breeze_vanilla",
+      "name": "almond_breeze_vanilla",
+      "roi": [
+        0.7319,
+        0.2953,
+        1.0,
+        0.425
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "almond_breeze_orginal",
+      "name": "almond_breeze_orginal",
+      "roi": [
+        0.05,
+        0.4547,
+        1.0,
+        0.5961
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "earths_own_oat_original",
+      "name": "earths_own_oat_original",
+      "roi": [
+        0.0556,
+        0.6102,
+        0.3083,
+        0.7148
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "earths_own_barista",
+      "name": "earths_own_barista",
+      "roi": [
+        0.3153,
+        0.6109,
+        0.5042,
+        0.7133
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "earths_own_oat_vanilla",
+      "name": "earths_own_oat_vanilla",
+      "roi": [
+        0.5167,
+        0.607,
+        0.7042,
+        0.7242
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "natura_soy_original",
+      "name": "natura_soy_original",
+      "roi": [
+        0.7111,
+        0.6133,
+        0.8611,
+        0.7273
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "natura_soy_unsweetened",
+      "name": "natura_soy_unsweetened",
+      "roi": [
+        0.8708,
+        0.6164,
+        0.9972,
+        0.7273
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "zevia_ginger",
+      "name": "zevia_ginger",
+      "roi": [
+        0.0597,
+        0.7484,
+        0.2514,
+        0.8242
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "zevia_cola",
+      "name": "zevia_cola",
+      "roi": [
+        0.2542,
+        0.7523,
+        0.4472,
+        0.8289
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "zevia_ginger_root_beer",
+      "name": "zevia_ginger_root_beer",
+      "roi": [
+        0.4542,
+        0.7539,
+        0.65,
+        0.8336
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "zevia_cream",
+      "name": "zevia_cream",
+      "roi": [
+        0.6597,
+        0.7547,
+        0.8528,
+        0.8359
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "zevia_black_cherry",
+      "name": "zevia_black_cherry",
+      "roi": [
+        0.8583,
+        0.7609,
+        1.0,
+        0.8375
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "lakewood_cherry",
+      "name": "lakewood_cherry",
+      "roi": [
+        0.0736,
+        0.8539,
+        0.2333,
+        0.9703
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "santa_cruz_lemonade",
+      "name": "santa_cruz_lemonade",
+      "roi": [
+        0.2431,
+        0.8531,
+        0.4972,
+        0.9773
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "compliments_berrys",
+      "name": "compliments_berrys",
+      "roi": [
+        0.5056,
+        0.8586,
+        0.6722,
+        0.9812
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "kiju_apple_grape",
+      "name": "kiju_apple_grape",
+      "roi": [
+        0.6819,
+        0.8602,
+        0.8583,
+        0.9836
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    },
+    {
+      "id": "kiju_apple",
+      "name": "kiju_apple",
+      "roi": [
+        0.8667,
+        0.8695,
+        0.9986,
+        0.9883
+      ],
+      "capacity": 1,
+      "low_stock_threshold": 0
+    }
+  ]
+}

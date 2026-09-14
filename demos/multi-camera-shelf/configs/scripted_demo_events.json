@@ -1,0 +1,17 @@
+{
+  "mode": "scripted_demo_only",
+  "video": "input/demo.mp4",
+  "events": [
+    {
+      "time_seconds": 12.8,
+      "removed": 3,
+      "description": "First completed pickup sequence"
+    },
+    {
+      "time_seconds": 19.2,
+      "removed": 2,
+      "description": "Second completed pickup sequence"
+    }
+  ],
+  "warning": "These are deterministic presentation events, not model predictions."
+}

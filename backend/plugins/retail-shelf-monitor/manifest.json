@@ -1,0 +1,24 @@
+{
+  "name": "retail-shelf-monitor",
+  "type": "batch/video-analytics",
+  "entry": ["bash", "scripts/run_demo.sh"],
+  "port": null,
+  "description": "RKNN retail shelf monitoring video demo",
+  "version": "1.0",
+  "project_root": "../../../demos/multi-camera-shelf",
+  "adapter": {"type": "shelf"},
+  "lifecycle": {
+    "single_instance": true,
+    "start_timeout_sec": 60,
+    "stop_signal": "SIGTERM",
+    "stop_timeout_sec": 20
+  },
+  "resources": {"npu": {"mode": "exclusive"}, "memory_mb": 2048},
+  "outputs": {
+    "channels": ["status", "log", "metrics", "data", "artifact"],
+    "artifacts": [
+      {"name": "restock_video", "path": "outputs/restock_demo_rk3588.mp4", "media_type": "video/mp4"}
+    ]
+  },
+  "parameters": {}
+}

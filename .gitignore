@@ -1,0 +1,32 @@
+# Python
+**/__pycache__/
+**/*.py[cod]
+**/.venv/
+**/.pytest_cache/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.tools/
+frontend/*.log
+frontend/*.pid
+
+# Runtime state
+.env
+backend/run/
+backend/var/
+**/outputs/
+services/voice-pipeline/results/runtime/
+
+# Downloaded assets
+models/piper/
+models/go2rtc/
+services/voice-pipeline/deploy/bundle/
+*.tar
+*.tar.gz
+*.zip
+
+# Editor and OS
+.DS_Store
+.idea/
+.vscode/

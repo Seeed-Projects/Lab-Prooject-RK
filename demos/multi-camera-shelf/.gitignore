@@ -1,0 +1,8 @@
+.venv/
+.venv-convert/
+.ultralytics/
+Ultralytics/
+__pycache__/
+*.pyc
+diagnostics/*.json
+outputs/*.mp4

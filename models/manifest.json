@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "assets": {
+    "piper_arm64": {
+      "version": "2023.11.14-2",
+      "url": "https://github.com/rhasspy/piper/releases/download/2023.11.14-2/piper_linux_aarch64.tar.gz",
+      "executable_sha256": "0c44a6360a21367b5d03b8656c3e274f4de715f6533245d8c1f17c242631912b"
+    },
+    "en_US_amy_low_model": {
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/amy/low/en_US-amy-low.onnx",
+      "sha256": "a5a91abb7de0f104358a25aded480ddacf1ff0762886325886ec406a2e86aab3"
+    },
+    "en_US_amy_low_config": {
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/amy/low/en_US-amy-low.onnx.json",
+      "sha256": "2250a9a605b8dc35a116717fadc5056695dd809e34a15d02f72a0f52d53d3ebb"
+    }
+  }
+}

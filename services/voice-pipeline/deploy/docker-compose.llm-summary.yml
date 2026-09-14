@@ -1,0 +1,23 @@
+# 会议总结 LLM 服务(可选组件, 实时流水线的后处理)
+# 来源: https://github.com/Hanzo-Huang/rkllm-docker (RKLLM runtime v1.2.3 + rknn-toolkit-lite2 v2.3.2,
+#        与本设备 /opt/rk-runtime 版本完全一致)
+# 模型: Qwen3-1.7B W8A8 (RK3588 专用量化, 不可与其他平台混用)
+#       A/B 实测: Qwen2.5-1.5B 解码更快(20 tok/s)但严重啰嗦+幻觉(虚构参会人/时间), 弃用
+# 启动: docker compose -f docker-compose.llm-summary.yml up -d
+# 验证: curl http://127.0.0.1:8001/health
+# 离线: 镜像已打包在 deploy/bundle/rkllm-summary-qwen3-1.7b-w8a8.tar.gz,
+#       ./restore.sh 会自动 docker load, 无需联网拉取 ghcr.io
+services:
+  llm-summary:
+    image: ghcr.io/hanzo-huang/rkllm-docker/qwen3-1.7b:w8a8-rk3588
+    container_name: rkllm-summary
+    network_mode: host
+    privileged: true        # RKLLM 运行时需要 /proc/device-tree + 完整 /dev 访问
+    restart: unless-stopped # 常驻: 免去每次总结前的模型加载等待
+    volumes:
+      - /dev:/dev
+    environment:
+      TARGET_PLATFORM: rk3588
+      PORT: "8001"          # OpenAI 兼容 API: POST /v1/chat/completions
+      API_FORMAT: openai
+      RUN_FREQ_FIX: "true"

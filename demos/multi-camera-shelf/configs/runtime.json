@@ -1,0 +1,28 @@
+{
+  "video": "input/demo.mp4",
+  "output": "outputs/restock_demo_rk3588.mp4",
+  "shelf_model": {
+    "path": "models/rknn/shelf_product.rknn",
+    "imgsz": 640,
+    "confidence": 0.4,
+    "iou": 0.45
+  },
+  "held_model": {
+    "path": "models/rknn/held_product_v4.rknn",
+    "imgsz": 320,
+    "confidence": 0.4,
+    "iou": 0.35,
+    "tile_overlap": 80,
+    "active_windows": [[7.0, 13.2], [17.2, 19.7]]
+  },
+  "regions": "configs/shelf_regions_freshco_coarse.json",
+  "type_regions": "configs/shelf_regions_freshco.json",
+  "type_groups": "configs/shelf_type_groups_freshco.json",
+  "type_names": "configs/shelf_type_names_freshco.json",
+  "scripted_events": "configs/scripted_demo_events.json",
+  "scripted_region_order": ["band_c", "band_a"],
+  "event_duration_seconds": 1.8,
+  "codec": "mp4v",
+  "core_mask": "auto"
+}
+
