@@ -2,7 +2,11 @@
 
 One local-first application that combines visual inventory monitoring, multi-stream RKNN inference, and voice analytics on a reComputer RK3588.
 
-![Single-camera inventory and voice assistant](media/screenshots/single-camera.png)
+## System architecture
+
+![Physical deployment and project architecture](media/architecture/system-architecture.svg)
+
+reCamera supplies detected video and authoritative product state, while ReSpeaker supplies far-field audio. The reComputer RK3588 runs the Vue/FastAPI application, all three local AI workflows, and the model runtimes; a browser provides the unified operator interface, and Piper returns spoken inventory answers through the attached speaker.
 
 ## Included demos
 
@@ -12,11 +16,19 @@ One local-first application that combines visual inventory monitoring, multi-str
 | Smart Shelf, multi-camera | Four independent video streams | RKNN object detection on RK3588 NPU | Four live feeds, shelf events, restock alerts |
 | Sales Conversation Analysis | ReSpeaker XVF3800 | Speaker diarization, ASR, local RKLLM | Live transcript, speaker turns, conversation summary |
 
+### Smart Shelf: single camera
+
+![Single-camera inventory and voice assistant](media/screenshots/single-camera.png)
+
+The assistant never answers inventory questions from stale data. If reCamera data is missing, uninitialized, or expired, it reports that state instead of inventing a quantity. RTSP is bridged to WebRTC when go2rtc is installed, with MJPEG as a fallback.
+
+### Smart Shelf: multi-camera
+
 ![Four-stream shelf monitoring](media/screenshots/multi-camera.png)
 
-![Sales conversation analysis](media/screenshots/sales-voice.png)
+### Sales Conversation Analysis
 
-The single-camera assistant never answers inventory questions from stale data. If reCamera data is missing, uninitialized, or expired, it reports that state instead of inventing a quantity. RTSP is bridged to WebRTC when go2rtc is installed, with MJPEG as a fallback.
+![Sales conversation analysis](media/screenshots/sales-voice.png)
 
 ## Hardware
 

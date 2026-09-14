@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Multimodal Retail AI Demo Center architecture</title>
+  <desc id="desc">Physical reCamera, ReSpeaker, browser, display, and speaker connections around a reComputer RK3588 running the Vue interface, FastAPI hub, and three local AI demos.</desc>
+  <defs>
+    <style>
+      .title { font: 700 36px Arial, sans-serif; fill: #172126; }
+      .subtitle { font: 400 19px Arial, sans-serif; fill: #5c6b70; }
+      .section { font: 700 22px Arial, sans-serif; fill: #172126; }
+      .label { font: 700 18px Arial, sans-serif; fill: #172126; }
+      .body { font: 400 15px Arial, sans-serif; fill: #435157; }
+      .small { font: 600 13px Arial, sans-serif; fill: #5c6b70; }
+      .white { fill: #ffffff; }
+      .green { fill: #65ad32; }
+      .green-text { fill: #4d9228; }
+      .line { fill: none; stroke: #607076; stroke-width: 3; marker-end: url(#arrow); }
+      .line-green { fill: none; stroke: #65ad32; stroke-width: 4; marker-end: url(#arrow-green); }
+      .dash { stroke-dasharray: 9 8; }
+    </style>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#152126" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#607076"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#65ad32"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f5f8f7"/>
+  <text x="56" y="62" class="title">Multimodal Retail AI Demo Center</text>
+  <text x="56" y="94" class="subtitle">Physical deployment + project architecture</text>
+
+  <!-- Physical inputs -->
+  <text x="56" y="146" class="section">Sensing devices</text>
+  <rect x="48" y="170" width="270" height="190" rx="8" fill="#ffffff" stroke="#8ac965" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="76" y="208" width="72" height="48" rx="8" fill="#e8f5e1" stroke="#65ad32" stroke-width="3"/>
+  <circle cx="112" cy="232" r="14" fill="#ffffff" stroke="#65ad32" stroke-width="4"/>
+  <path d="M148 220 L169 208 L169 256 L148 244 Z" fill="#65ad32"/>
+  <text x="190" y="224" class="label">reCamera</text>
+  <text x="190" y="248" class="body">Edge vision sensor</text>
+  <line x1="76" y1="278" x2="290" y2="278" stroke="#dce5e1"/>
+  <text x="76" y="307" class="body">Detected video</text>
+  <text x="76" y="331" class="body">Product identity + counts</text>
+
+  <rect x="48" y="458" width="270" height="190" rx="8" fill="#ffffff" stroke="#8ac965" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="78" y="493" width="86" height="58" rx="29" fill="#e8f5e1" stroke="#65ad32" stroke-width="3"/>
+  <circle cx="96" cy="522" r="6" class="green"/>
+  <circle cx="121" cy="506" r="6" class="green"/>
+  <circle cx="146" cy="522" r="6" class="green"/>
+  <circle cx="121" cy="539" r="6" class="green"/>
+  <text x="190" y="512" class="label">ReSpeaker</text>
+  <text x="190" y="536" class="body">XVF3800 array</text>
+  <line x1="76" y1="570" x2="290" y2="570" stroke="#dce5e1"/>
+  <text x="76" y="599" class="body">Far-field USB audio</text>
+  <text x="76" y="623" class="body">Multi-speaker capture</text>
+
+  <!-- reComputer boundary -->
+  <rect x="370" y="126" width="880" height="670" rx="10" fill="#ffffff" stroke="#34444a" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="370" y="126" width="880" height="70" rx="8" fill="#26363b"/>
+  <rect x="370" y="180" width="880" height="16" fill="#26363b"/>
+  <rect x="402" y="148" width="34" height="27" rx="4" fill="#65ad32"/>
+  <path d="M394 154 H402 M394 162 H402 M394 170 H402 M436 154 H444 M436 162 H444 M436 170 H444" stroke="#8ac965" stroke-width="3"/>
+  <text x="462" y="169" class="section white">reComputer RK3588 edge AI system</text>
+  <text x="1215" y="169" text-anchor="end" class="small white">ALL INFERENCE RUNS LOCALLY</text>
+
+  <!-- App entry -->
+  <rect x="404" y="224" width="812" height="100" rx="8" fill="#f4f8f6" stroke="#b9c9c1" stroke-width="2"/>
+  <text x="430" y="256" class="small green-text">APPLICATION ENTRY</text>
+  <text x="430" y="285" class="label">Vue demo center</text>
+  <text x="430" y="308" class="body">One interface for live video, inventory, events, transcripts, and summaries</text>
+  <rect x="973" y="247" width="216" height="52" rx="7" fill="#ffffff" stroke="#65ad32" stroke-width="2"/>
+  <text x="1081" y="270" text-anchor="middle" class="label">FastAPI hub</text>
+  <text x="1081" y="291" text-anchor="middle" class="small">HTTP + WebSocket :8080</text>
+
+  <!-- Three demo paths -->
+  <text x="404" y="362" class="small green-text">LOCAL AI WORKFLOWS</text>
+  <rect x="404" y="380" width="252" height="244" rx="8" fill="#fbfcfc" stroke="#cbd7d2" stroke-width="2"/>
+  <circle cx="438" cy="414" r="18" fill="#65ad32"/>
+  <text x="438" y="420" text-anchor="middle" class="label white">1</text>
+  <text x="468" y="409" class="label">Smart Shelf</text>
+  <text x="468" y="431" class="small">SINGLE CAMERA</text>
+  <line x1="428" y1="453" x2="632" y2="453" stroke="#dce5e1"/>
+  <text x="428" y="484" class="body">go2rtc WebRTC / MJPEG</text>
+  <text x="428" y="514" class="body">Fresh inventory authority</text>
+  <text x="428" y="544" class="body">RKLLM intent routing</text>
+  <text x="428" y="574" class="body">Piper spoken answers</text>
+  <rect x="428" y="592" width="177" height="21" rx="4" fill="#e8f5e1"/>
+  <text x="516" y="607" text-anchor="middle" class="small green-text">VISION + VOICE</text>
+
+  <rect x="684" y="380" width="252" height="244" rx="8" fill="#fbfcfc" stroke="#cbd7d2" stroke-width="2"/>
+  <circle cx="718" cy="414" r="18" fill="#65ad32"/>
+  <text x="718" y="420" text-anchor="middle" class="label white">2</text>
+  <text x="748" y="409" class="label">Smart Shelf</text>
+  <text x="748" y="431" class="small">MULTI-CAMERA</text>
+  <line x1="708" y1="453" x2="912" y2="453" stroke="#dce5e1"/>
+  <text x="708" y="484" class="body">Four independent streams</text>
+  <text x="708" y="514" class="body">Four RKNN workers</text>
+  <text x="708" y="544" class="body">Object + stock detection</text>
+  <text x="708" y="574" class="body">Restock event timeline</text>
+  <rect x="708" y="592" width="177" height="21" rx="4" fill="#e8f5e1"/>
+  <text x="796" y="607" text-anchor="middle" class="small green-text">RK3588 NPU</text>
+
+  <rect x="964" y="380" width="252" height="244" rx="8" fill="#fbfcfc" stroke="#cbd7d2" stroke-width="2"/>
+  <circle cx="998" cy="414" r="18" fill="#65ad32"/>
+  <text x="998" y="420" text-anchor="middle" class="label white">3</text>
+  <text x="1028" y="409" class="label">Sales Analysis</text>
+  <text x="1028" y="431" class="small">VOICE CONVERSATION</text>
+  <line x1="988" y1="453" x2="1192" y2="453" stroke="#dce5e1"/>
+  <text x="988" y="484" class="body">Speaker diarization</text>
+  <text x="988" y="514" class="body">Qwen3-ASR transcript</text>
+  <text x="988" y="544" class="body">RKLLM intent + summary</text>
+  <text x="988" y="574" class="body">Live browser updates</text>
+  <rect x="988" y="592" width="177" height="21" rx="4" fill="#e8f5e1"/>
+  <text x="1076" y="607" text-anchor="middle" class="small green-text">AUDIO + LLM</text>
+
+  <!-- Platform -->
+  <rect x="404" y="660" width="812" height="100" rx="8" fill="#eef3f1" stroke="#b9c9c1" stroke-width="2"/>
+  <text x="430" y="691" class="small green-text">SHARED EDGE PLATFORM</text>
+  <text x="430" y="722" class="label">RK3588 CPU + NPU</text>
+  <text x="430" y="745" class="body">Demo switching  |  hardware health  |  watchdog  |  local model runtimes</text>
+
+  <!-- Physical outputs -->
+  <text x="1324" y="146" class="section">Experience</text>
+  <rect x="1316" y="170" width="236" height="190" rx="8" fill="#ffffff" stroke="#8ac965" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="1350" y="204" width="168" height="102" rx="5" fill="#e8f5e1" stroke="#65ad32" stroke-width="3"/>
+  <path d="M1364 219 H1504 V284 H1364 Z" fill="#ffffff"/>
+  <path d="M1416 306 V325 M1388 325 H1480" stroke="#65ad32" stroke-width="5"/>
+  <text x="1434" y="342" text-anchor="middle" class="label">Browser / display</text>
+
+  <rect x="1316" y="458" width="236" height="190" rx="8" fill="#ffffff" stroke="#8ac965" stroke-width="2" filter="url(#shadow)"/>
+  <path d="M1364 512 H1398 L1430 486 V620 L1398 594 H1364 Z" fill="#e8f5e1" stroke="#65ad32" stroke-width="3"/>
+  <path d="M1448 522 Q1486 552 1448 582 M1465 505 Q1527 552 1465 599" fill="none" stroke="#65ad32" stroke-width="4"/>
+  <text x="1434" y="630" text-anchor="middle" class="label">Speaker</text>
+
+  <!-- Physical data flows -->
+  <path d="M318 235 H345 Q360 235 370 250" class="line-green"/>
+  <rect x="270" y="203" width="150" height="24" rx="4" fill="#f5f8f7"/>
+  <text x="345" y="220" text-anchor="middle" class="small">RTSP + WS :9002</text>
+
+  <path d="M318 535 H345 Q360 535 370 520" class="line-green"/>
+  <rect x="296" y="548" width="98" height="24" rx="4" fill="#f5f8f7"/>
+  <text x="345" y="565" text-anchor="middle" class="small">USB audio</text>
+
+  <path d="M1250 272 H1316" class="line-green"/>
+  <path d="M1316 306 H1250" class="line dash"/>
+  <text x="1283" y="250" text-anchor="middle" class="small">LAN</text>
+
+  <path d="M1250 552 H1316" class="line-green"/>
+  <rect x="1237" y="566" width="92" height="42" rx="4" fill="#f5f8f7"/>
+  <text x="1283" y="582" text-anchor="middle" class="small">Piper TTS</text>
+  <text x="1283" y="598" text-anchor="middle" class="small">3.5 mm</text>
+
+  <text x="56" y="844" class="small">Solid green: physical data path</text>
+  <line x1="257" y1="840" x2="308" y2="840" class="line-green"/>
+  <text x="338" y="844" class="small">Dashed gray: browser control and responses</text>
+</svg>
