@@ -1,0 +1,10 @@
+{
+  "id": "rk1820-qwen3-1p7b-benchmark",
+  "name": "RK1820 Qwen3-1.7B Long Context Benchmark",
+  "board": "reComputer RK3576 + RK1820",
+  "model": "Qwen3-1.7B",
+  "type": "benchmark",
+  "entrypoint": "start_ui.sh",
+  "model_launcher": "start_model_server.sh",
+  "ui_port": 7863
+}

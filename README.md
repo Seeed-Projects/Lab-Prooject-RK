@@ -1,5 +1,23 @@
 # Multimodal Retail AI Demo Center on reComputer RK3588
 
+This repository contains four independently downloadable Seeed AI Lab projects. Use the matching Release Asset for the project you want; do not use the GitHub repository ZIP when distributing a single demo.
+
+| Project | Hardware | Download asset |
+| --- | --- | --- |
+| Multimodal Retail AI Demo Center | reComputer RK3588 | `seeed-ai-lab-retail-ai-center-v<version>.tar.gz` |
+| RK1828 Qwen3-4B Long Context Benchmark | RK1828 | `seeed-ai-lab-rk1828-4b-benchmark-v<version>.tar.gz` |
+| RK1820 Qwen3-1.7B Long Context Benchmark | RK1820 | `seeed-ai-lab-rk1820-qwen3-1p7b-benchmark-v<version>.tar.gz` |
+| RK1820 Vision Story Studio | RK1820 | `seeed-ai-lab-rk1820-vlm-creative-v<version>.tar.gz` |
+
+The RK1820 text package currently uses the available Firefly Qwen3-1.7B model package. The VLM package turns the 3B test into a local image-to-story creative studio. Each archive contains only one project and excludes the other demos, repository tooling, virtual environments, and model binaries.
+
+Build and validate the four local assets with:
+
+```bash
+./tools/package-project.sh --all --version 1.0.0
+for archive in dist/*.tar.gz; do ./tools/check-project-package.sh "$archive"; done
+```
+
 A local-first retail AI showcase that brings shelf vision, inventory-aware voice interaction, multi-stream RKNN inference, and sales conversation analysis into one browser interface on a reComputer RK3588.
 
 **Version 1.0.0 | Debian 12 arm64 | Apache-2.0**

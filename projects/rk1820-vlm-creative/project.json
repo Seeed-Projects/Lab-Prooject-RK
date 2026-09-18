@@ -1,0 +1,10 @@
+{
+  "id": "rk1820-vlm-creative",
+  "name": "RK1820 Vision Story Studio",
+  "board": "reComputer RK3576 + RK1820",
+  "model": "Qwen2.5-VL-3B_prune",
+  "type": "creative-vlm",
+  "entrypoint": "start_ui.sh",
+  "model_launcher": "start_vlm_server.sh",
+  "ui_port": 7861
+}

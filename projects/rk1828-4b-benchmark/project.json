@@ -1,0 +1,10 @@
+{
+  "id": "rk1828-4b-benchmark",
+  "name": "RK1828 Qwen3-4B Long Context Benchmark",
+  "board": "reComputer RK3576 + RK1828",
+  "model": "Qwen3-4B",
+  "type": "benchmark",
+  "entrypoint": "start_ui.sh",
+  "model_launcher": "start_model_server.sh",
+  "ui_port": 7862
+}

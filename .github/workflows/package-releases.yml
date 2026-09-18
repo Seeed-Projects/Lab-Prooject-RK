@@ -1,0 +1,48 @@
+name: Package Seeed AI Lab projects
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Release version, for example 1.0.0
+        required: true
+        default: 1.0.0
+      project:
+        description: Package one project or all projects
+        required: true
+        type: choice
+        options:
+          - all
+          - retail-ai-center
+          - rk1828-4b-benchmark
+          - rk1820-qwen3-1p7b-benchmark
+          - rk1820-vlm-creative
+        default: all
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build independent project archives
+        run: |
+          if [ "${{ inputs.project }}" = "all" ]; then
+            ./tools/package-project.sh --all --version "${{ inputs.version }}"
+          else
+            ./tools/package-project.sh --project "${{ inputs.project }}" --version "${{ inputs.version }}"
+          fi
+      - name: Validate archives
+        run: |
+          for archive in dist/*.tar.gz; do
+            ./tools/check-project-package.sh "$archive"
+          done
+      - name: Publish Release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: projects-v${{ inputs.version }}
+          name: Seeed AI Lab projects v${{ inputs.version }}
+          generate_release_notes: true
+          files: dist/*.tar.gz

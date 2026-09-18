@@ -1,0 +1,9 @@
+{
+  "id": "retail-ai-center",
+  "name": "Multimodal Retail AI Demo Center",
+  "board": "reComputer RK3588",
+  "type": "multimodal-showcase",
+  "entrypoint": "scripts/start.sh",
+  "install": "scripts/bootstrap.sh",
+  "verify": "scripts/verify.sh"
+}
