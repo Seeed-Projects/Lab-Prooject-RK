@@ -1,6 +1,8 @@
-# Multimodal Retail AI Demo Center on reComputer RK3588
+# Seeed AI Lab Projects for Rockchip RK
 
-This repository contains four independently downloadable Seeed AI Lab projects. Use the matching Release Asset for the project you want; do not use the GitHub repository ZIP when distributing a single demo.
+This repository contains four independently downloadable Seeed AI Lab projects for Rockchip devices. Each project has its own directory, metadata, startup scripts, and package asset. Customers only need to download the project that matches their hardware and use case.
+
+Do not use the GitHub repository ZIP when distributing a single demo. Use the matching Release Asset listed below.
 
 | Project | Hardware | Download asset |
 | --- | --- | --- |
@@ -8,6 +10,45 @@ This repository contains four independently downloadable Seeed AI Lab projects. 
 | RK1828 Qwen3-4B Long Context Benchmark | RK1828 | `seeed-ai-lab-rk1828-4b-benchmark-v<version>.tar.gz` |
 | RK1820 Qwen3-1.7B Long Context Benchmark | RK1820 | `seeed-ai-lab-rk1820-qwen3-1p7b-benchmark-v<version>.tar.gz` |
 | RK1820 Vision Story Studio | RK1820 | `seeed-ai-lab-rk1820-vlm-creative-v<version>.tar.gz` |
+
+## Project map
+
+| Project | Directory | What it demonstrates | Main entry point | Details |
+| --- | --- | --- | --- | --- |
+| Multimodal Retail AI Demo Center | `/` | Retail vision, inventory voice assistant, multi-camera detection, and sales conversation analysis | `scripts/start.sh` | [Project README](README.md#retail-ai-demo-center) |
+| RK1828 Qwen3-4B Long Context Benchmark | `/projects/rk1828-4b-benchmark/` | Long-context text generation and RK1828 performance testing | `start_ui.sh` | [Project README](projects/rk1828-4b-benchmark/README.md) |
+| RK1820 Qwen3-1.7B Long Context Benchmark | `/projects/rk1820-1p5b-benchmark/` | Lightweight long-context text generation on RK1820 | `start_ui.sh` | [Project README](projects/rk1820-1p5b-benchmark/README.md) |
+| RK1820 Vision Story Studio | `/projects/rk1820-vlm-creative/` | Upload an image and generate a creative visual story with a local VLM | `start_ui.sh` | [Project README](projects/rk1820-vlm-creative/README.md) |
+
+## Four project frameworks
+
+The repository is organized as four independent packages. The root project is the existing RK3588 showcase; the three directories under `projects/` are standalone RK182x downloads.
+
+```text
+Lab-Prooject-RK/
+├── project.json                         # RK3588 project metadata
+├── backend/ frontend/                   # Retail AI Demo Center
+├── demos/ services/ models/ deploy/      # RK3588 runtime components
+├── scripts/                             # RK3588 install, start, verify tools
+└── projects/
+    ├── rk1828-4b-benchmark/
+    │   ├── project.json                 # RK1828 project metadata
+    │   ├── start_model_server.sh        # RKLLM model service
+    │   ├── start_ui.sh                  # Browser UI service
+    │   └── app.py / static/             # Benchmark application
+    ├── rk1820-1p5b-benchmark/
+    │   ├── project.json                 # RK1820 project metadata
+    │   ├── start_model_server.sh        # RKLLM model service
+    │   ├── start_ui.sh                  # Browser UI service
+    │   └── app.py / static/             # Benchmark application
+    └── rk1820-vlm-creative/
+        ├── project.json                 # RK1820 VLM metadata
+        ├── start_vlm_server.sh          # VLM model service
+        ├── start_ui.sh                  # Browser UI service
+        └── app.py / static/             # Vision Story Studio
+```
+
+Each standalone RK182x package contains only its own application and launch scripts. Model binaries, Python environments, other projects, and repository packaging tools are excluded from the downloaded project archive.
 
 The RK1820 text package currently uses the available Firefly Qwen3-1.7B model package. The VLM package turns the 3B test into a local image-to-story creative studio. Each archive contains only one project and excludes the other demos, repository tooling, virtual environments, and model binaries.
 
@@ -22,7 +63,11 @@ A local-first retail AI showcase that brings shelf vision, inventory-aware voice
 
 **Version 1.0.0 | Debian 12 arm64 | Apache-2.0**
 
-## Overview
+## Retail AI Demo Center
+
+The following sections document the RK3588 project at the repository root.
+
+### Overview
 
 The Demo Center combines a reComputer RK3588, reCamera, and ReSpeaker XVF3800 into three switchable experiences. Video, audio, inventory state, speech recognition, language-model processing, and text-to-speech stay on the edge device during operation. No cloud API is required after the runtime assets have been prepared.
 
